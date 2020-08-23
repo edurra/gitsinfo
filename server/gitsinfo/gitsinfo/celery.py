@@ -10,8 +10,8 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    "see-you-in-ten-seconds-task": {
-        "task": "gitsinfoapp.tasks.add",
+    "periodic-scan-task": {
+        "task": "gitsinfoapp.tasks.periodicscan",
         "schedule": 30.0
     }
 }

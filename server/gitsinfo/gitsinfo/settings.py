@@ -124,4 +124,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CELERY_TIMEZONE = 'Europe/London'
+CELERY_IMPORTS = ['gitsinfoapp.tasks']
+
 
