@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gitsinfoapp/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<div class="div-link">
+		
+		<form action="/" method="get">
+		  <input  type="submit" class="btn btn-info" value="Go to the main page">
+		</form>
+
+	</div>
+	<table class="table table-hover custom-table">
+		<thead>
+		    <tr>
+		        <th>Repository</th>
+			<th>History</th>
+		    </tr>
+		</thead>
+		<tbody>	
+		{% for repo in repositories %}
+		<tr>
+		<td> {{repo.name}} </td>
+		<td> <a href='/history?repo={{repo.name}}' /a>Check history</td>
+		</tr>
+		{% endfor %}
+		<tbody>
+	</table>	
+	{% if history %}
+            <table class="table table-hover custom-table">
+		<thead>
+		    <tr>
+		        <th>Finding</th>
+			<th>Date of finding</th>
+			<th>Solved</th>
+		    </tr>
+		</thead>
+		<tbody>
+	    	{% for hist in history %}
+		<tr>
+		<td>{{hist.0}}</td>
+		<td>{{hist.1}}</td>
+		{% if hist.2 == True %}
+		<td class = "solved">{{hist.2}}</td>
+		{% else %}
+		<td class = "notsolved"> {{hist.2}} </td>
+		{%endif%}
+		</tr>		
+		{% endfor %}
+		</tbody>
+	    </table>
+
+	{% endif %}
+</html>

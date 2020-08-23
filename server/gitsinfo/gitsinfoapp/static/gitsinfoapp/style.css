@@ -1,0 +1,30 @@
+.solved {
+ color: green
+}
+
+.notsolved {
+ color: red
+}
+
+.custom-table {
+ margin-top: 30px
+}
+
+.div-link {
+ margin-top: 30px;
+ text-align: center
+}
+
+.custom-btn {
+margin-top: 15px
+}
+
+#repo-label {
+ margin-top: 10px
+}
+
+#repo-input {
+ margin-top: 10px;
+ margin-bottom: 10px;
+ width: 400px
+}

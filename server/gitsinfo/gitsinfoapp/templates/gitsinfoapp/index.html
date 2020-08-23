@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gitsinfoapp/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<div class = "div-link" >
+		<form action="/index/" method="post">{% csrf_token %}
+		  <label for="fname" id="repo-label">Enter a GitHub Repository</label><br>
+		  <input type="text" id="repo-input" name="repo"><br>
+		  <input type="submit" value="Search secrets" class = "btn btn-success">
+		</form>
+		<form action="/history" method="get">
+		  <input type="submit" value="Go to the history page" class = "btn btn-info custom-btn">
+		</form>
+	</div>
+
+	{% if findings %}
+	<table class="table table-hover custom-table">
+		<thead>
+		    <tr>
+		        <th>Finding</th>
+		    </tr>
+		</thead>
+		<tbody>
+		{% for finding in findings %}
+		<tr>
+		<td>{{finding}}</td>
+		</tr>	
+		{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+</html>
