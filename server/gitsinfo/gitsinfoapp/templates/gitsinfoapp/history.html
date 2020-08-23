@@ -16,7 +16,6 @@
 		<thead>
 		    <tr>
 		        <th>Repository</th>
-			<th>Periodic scanning </th>
 			<th>History</th>
 		    </tr>
 		</thead>
@@ -24,7 +23,6 @@
 		{% for repo in repositories %}
 		<tr>
 		<td> {{repo.name}} </td>
-		<td> {{repo.periodicscan}} </td>
 		<td> <a href='/history?repo={{repo.name}}' /a>Check history</td>
 		</tr>
 		{% endfor %}

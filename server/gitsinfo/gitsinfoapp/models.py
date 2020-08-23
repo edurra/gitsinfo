@@ -4,7 +4,7 @@ from django.db import models
 
 class Repository(models.Model):
 	name = models.CharField(max_length=300)
-	periodicscan = models.BooleanField(default=False)
+	periodicscan = models.BooleanField(default = True)
 	def __str__(self):
 		return self.name
 

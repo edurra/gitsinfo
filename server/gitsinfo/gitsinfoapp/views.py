@@ -19,9 +19,8 @@ def index(request):
 		else:
 			saveFindings(findings, repo)
 		context['findings'] = findings
+	
 	return render(request, 'gitsinfoapp/index.html', context)
-
-
 
 def history(request):
 	context = {}

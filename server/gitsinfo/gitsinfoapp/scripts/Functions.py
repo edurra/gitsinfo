@@ -1,4 +1,4 @@
-from gitsinfoapp.models import Repository, Finding
+from django.shortcuts import render
 import gitsinfoapp.scripts.Gitsmain as gitsmain
 import os
 from gitsinfoapp.models import Repository, Finding
@@ -21,7 +21,6 @@ def saveFindings(findings, repo):
 				old_finding = Finding.objects.get(finding=f)
 				old_finding.solved = True
 				old_finding.save()
-					
 	else:
 		rep = Repository(name = repo)
 		rep.save()
