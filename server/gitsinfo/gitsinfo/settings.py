@@ -127,3 +127,5 @@ CELERY_IMPORTS = ['gitsinfoapp.tasks']
 
 CELERY_TIMEZONE = 'Europe/London'
 
+LOGIN_URL = "/login"
+

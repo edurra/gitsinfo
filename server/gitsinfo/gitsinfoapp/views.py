@@ -5,7 +5,12 @@ from gitsinfoapp.models import Repository, Finding
 from django.utils import timezone
 from datetime import datetime
 from gitsinfoapp.scripts.Functions import saveFindings
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponseRedirect
 
+
+@login_required(redirect_field_name='/login')
 def index(request):
 	context = {}
 	if request.method == 'POST':
@@ -22,6 +27,7 @@ def index(request):
 	
 	return render(request, 'gitsinfoapp/index.html', context)
 
+@login_required(redirect_field_name='/login')
 def history(request):
 	context = {}
 	history = []
@@ -42,4 +48,24 @@ def history(request):
 	context['history'] = history
 	context['repositories'] = repositories
 	return render(request, 'gitsinfoapp/history.html', context)
+
+def loginuser(request):
+	context = {}
+	if request.method == 'GET':
+
+		return render(request, 'gitsinfoapp/login.html', context)
+	if request.method == 'POST':
+		username = request.POST['user']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return render(request, 'gitsinfoapp/history.html', context)
+		else:
+			return render(request, 'gitsinfoapp/login.html', context)
+
+def logoutuser(request):
+	context = {}
+	logout(request)
+	return HttpResponseRedirect('/login/')
 

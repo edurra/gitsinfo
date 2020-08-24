@@ -4,3 +4,4 @@ How to run:
 - cd gitsinfo/server
 - docker-compose up
 
+The server will have default credentials admin/admin (log in in SERVER/admin)
