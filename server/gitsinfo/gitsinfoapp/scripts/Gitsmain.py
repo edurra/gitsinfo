@@ -3,16 +3,19 @@ import gitsinfoapp.scripts.Gitsfunctions as Gitsfunctions
 import os
 import git
 import shutil
-
+import random
+import string
 ALLOWED_EXTENSIONS = ["txt","php","py","html","js","sh","jsp", "json", "xml"]
 def findings(path):
 	sensitive_info = []
+	letters = string.ascii_lowercase
+	tmp_name = "/tmp"+''.join(random.choice(letters) for i in range(15))
 	try:
-		if os.path.exists(os.getcwd() + '/tmp'):
-			shutil.rmtree(os.getcwd() + '/tmp')
-		os.mkdir(os.getcwd() + '/tmp')
-		git.Git(os.getcwd() + '/tmp').clone(path)
-		rootdir = os.getcwd() + '/tmp'
+		if os.path.exists(os.getcwd() + tmp_name):
+			shutil.rmtree(os.getcwd() + tmp_name)
+		os.mkdir(os.getcwd() + tmp_name)
+		git.Git(os.getcwd() + tmp_name).clone(path)
+		rootdir = os.getcwd() + tmp_name
 		for subdir, dirs, files in os.walk(rootdir):
 			for f1 in files:
 				filepath = os.path.join(subdir, f1)
@@ -22,7 +25,7 @@ def findings(path):
 					f = open(filepath, 'r', encoding = "latin-1")
 					lines = f.readlines()
 					f.close()
-					name = filepath.replace(os.getcwd() + '/tmp','')
+					name = filepath.replace(os.getcwd() + tmp_name,'')
 					ftocheck = Gitsfunctions.FileToCheck(lines,name)
 					file_info = ftocheck.discoverSecrets()
 					if len(file_info) > 0:
@@ -30,7 +33,7 @@ def findings(path):
 							sensitive_info.append(inf)
 	except:
 		sensitive_info.append("Repository not found")
-	shutil.rmtree(os.getcwd() + '/tmp')
+	shutil.rmtree(os.getcwd() + tmp_name)
 	return sensitive_info
 
 
