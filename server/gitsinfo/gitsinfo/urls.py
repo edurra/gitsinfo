@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('gitsinfoapp.urls')),
     path('logout/', include('gitsinfoapp.urls')),
+    path('changeattr/', include('gitsinfoapp.urls')),
 ]

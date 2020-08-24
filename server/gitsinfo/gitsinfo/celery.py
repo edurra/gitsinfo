@@ -12,6 +12,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "periodic-scan-task": {
         "task": "gitsinfoapp.tasks.periodicscan",
-        "schedule": 30.0
+        "schedule": 86400.0
     }
 }

@@ -1,12 +1,9 @@
 <!doctype html>
 <html lang="en">
 {% include 'gitsinfoapp/header.html' %}
-{% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'gitsinfoapp/style.css' %}">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<div class="div-link">
+	<div class="div-center">
 		
 		<form action="/" method="get">
 		  <input  type="submit" class="btn btn-info" value="Go to the main page">
@@ -17,6 +14,7 @@
 		<thead>
 		    <tr>
 		        <th>Repository</th>
+			<th>Periodic Scan</th>
 			<th>History</th>
 		    </tr>
 		</thead>
@@ -24,6 +22,7 @@
 		{% for repo in repositories %}
 		<tr>
 		<td> {{repo.name}} </td>
+		<td> <ul class="left">{{repo.periodicscan}}</ul> <form class="left" action="/changeattr/" method="post">{% csrf_token %}<input type="submit" class="btn-sm btn-info" value="change"><input type="hidden" value="{{repo.id}}" id="repo" name="repo"></form></td>
 		<td> <a href='/history?repo={{repo.name}}' /a>Check history</td>
 		</tr>
 		{% endfor %}

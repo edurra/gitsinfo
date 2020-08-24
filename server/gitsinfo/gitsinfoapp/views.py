@@ -49,6 +49,20 @@ def history(request):
 	context['repositories'] = repositories
 	return render(request, 'gitsinfoapp/history.html', context)
 
+@login_required(redirect_field_name='/login')
+def changeattr(request):
+	if request.method == 'POST':
+		if request.POST["repo"]:
+			rid = request.POST["repo"]
+			r = Repository.objects.filter(id=rid)
+			r = r[0]
+			if r.periodicscan == True:
+				r.periodicscan = False
+			else:
+				r.periodicscan = True
+			r.save()
+	return HttpResponseRedirect('/history/')
+
 def loginuser(request):
 	context = {}
 	if request.method == 'GET':
@@ -60,12 +74,12 @@ def loginuser(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return render(request, 'gitsinfoapp/history.html', context)
+			return HttpResponseRedirect('/')
 		else:
 			return render(request, 'gitsinfoapp/login.html', context)
 
 def logoutuser(request):
 	context = {}
 	logout(request)
-	return HttpResponseRedirect('/login/')
+	return 	HttpResponseRedirect('/login/')
 

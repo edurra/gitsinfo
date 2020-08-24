@@ -1,11 +1,19 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'gitsinfoapp/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<h2>Login</h2>
+<div class="div-center">
+	<h2>Login</h2>
 
-<form method="post">
-    {% csrf_token %}
-     <input type="text" id="user" name="user"><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value="Login">
-</form>
+	<form method="post">
+	    {% csrf_token %}
+	     <input type="text" class = "custom-text" id="user" name="user"><br>
+	    <input type="password" class = "custom-text" id="password" name="password"><br>
+	    <input type="submit" class="btn btn-info custom-btn" value="Login">
+	</form>
+</div>
 
+</html>
 
